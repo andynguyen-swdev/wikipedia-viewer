@@ -1,11 +1,22 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
-import './index.css';
+import Root from './components/Root';
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('root') as HTMLElement
-);
-registerServiceWorker();
+function render() {
+    ReactDOM.render(
+        <Root/>,
+        document.getElementById('root')
+    );
+}
+
+render();
+
+if (module.hot) {
+    module.hot.accept(
+        './components/Root',
+        () => { render(); });
+}
+
+declare namespace module {
+    export let hot: any;
+}
