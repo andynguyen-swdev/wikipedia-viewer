@@ -1,5 +1,5 @@
-import * as Redux from "redux";
 import { Article, GlobalState } from "../reducers/index";
+import { ThunkAction } from "redux-thunk";
 
 //
 //  Types
@@ -51,8 +51,8 @@ const requestSuccess = (searchQuery: string, response: Article[]): RequestSucces
     response
 });
 
-export const searchArticles = (query: string) =>
-    (dispatch: Redux.Dispatch<{}>, getState: () => GlobalState) => {
+export const searchArticles = (query: string): ThunkAction<any, GlobalState, any> =>
+    (dispatch, getState) => {
         dispatch(requestSearch(query));
         fetchArticle(query)
             .then(response => {
@@ -87,10 +87,11 @@ const fetchArticle = async (srsearch: string) => {
         list: "search",
         format: "json",
         srprop: "snippet",
+        origin: "*",
         srsearch: encodeURI(srsearch)
     };
     const paramsLink = Object.keys(params).map(key => `${key}=${params[key]}`).join("&");
 
     return fetch(endPoint + paramsLink)
-        .then(body => body.json);
+        .then(body => body.json());
 };
