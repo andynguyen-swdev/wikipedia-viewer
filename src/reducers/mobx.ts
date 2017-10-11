@@ -1,4 +1,6 @@
-import {action, observable} from "mobx";
+import {action, observable, useStrict} from "mobx";
+
+useStrict(true);
 
 export interface Article {
     title: string;
@@ -14,6 +16,7 @@ export class AppState {
 
     @action
     searchArticles = async (query: string) => {
+        if (!query.trim()) return;
         try {
             this.startRequest(query);
             const response = await fetchArticle(query);
@@ -21,6 +24,11 @@ export class AppState {
         } catch (err) {
             this.handleRequestFailure(query, err);
         }
+    }
+
+    @action
+    setIsFetching(_: boolean) {
+        this.isFetching = _;
     }
 
     @action
@@ -55,8 +63,8 @@ export class AppState {
 
 export default new AppState();
 
-const handleResponse = (respone: any): Article[] =>
-    respone.query.search.map((item: any): Article => {
+const handleResponse = (response: any): Article[] =>
+    response.query.search.map((item: any): Article => {
         return {
             title: item.title,
             pageid: item.pageid,

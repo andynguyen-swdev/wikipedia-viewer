@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Article } from "../reducers/index";
+import { Article } from "../reducers/mobx";
 
 interface ArticleViewProps {
     article: Article;
@@ -7,10 +7,10 @@ interface ArticleViewProps {
 
 const ArticleView: React.SFC<ArticleViewProps> = (props) => {
     return (
-        <div>
+        <a href={`https://en.wikipedia.org/?curid=${props.article.pageid}`} target="_blank">
             <h2>{props.article.title}</h2>
             <p dangerouslySetInnerHTML={{__html: props.article.snippet}}/>
-        </div>
+        </a>
     );
 };
 

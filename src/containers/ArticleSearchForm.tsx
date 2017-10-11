@@ -1,8 +1,9 @@
 import * as React from "react";
-import { observable } from "mobx";
-import { inject, observer } from "mobx-react";
-import { AppState } from "../reducers/mobx";
-import { FormEvent } from "react";
+import {FormEvent} from "react";
+import {action, observable} from "mobx";
+import {inject, observer} from "mobx-react";
+import {AppState} from "../reducers/mobx";
+import * as _ from "lodash";
 
 interface ArticleSearchFormProps {
     appState?: AppState;
@@ -11,7 +12,11 @@ interface ArticleSearchFormProps {
 @inject("appState")
 @observer
 class ArticleSearchForm extends React.Component<ArticleSearchFormProps, {}> {
-    @observable inputText = "Oh shit";
+    @observable inputText = "";
+
+    throttledSearch = _.throttle(() => {
+        this.props.appState!.searchArticles(this.inputText.trim());
+    }, 1000);
 
     constructor(props: {}) {
         super(props);
@@ -30,13 +35,21 @@ class ArticleSearchForm extends React.Component<ArticleSearchFormProps, {}> {
         );
     }
 
-    onSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        this.props.appState!.searchArticles(this.inputText);
+    handleInput = () => {
+        if (this.inputText.trim()) {
+            this.props.appState!.setIsFetching(true);
+            this.throttledSearch();
+        }
     }
 
-    onInputChange = (e: any) => {
+    onSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        this.handleInput();
+    }
+
+    @action onInputChange = (e: any) => {
         this.inputText = e.currentTarget.value;
+        this.handleInput();
     }
 }
 
