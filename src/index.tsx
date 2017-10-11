@@ -1,11 +1,11 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import Root from './components/Root';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import Root from "./containers/Root";
 
 function render() {
     ReactDOM.render(
         <Root/>,
-        document.getElementById('root')
+        document.getElementById("root")
     );
 }
 
@@ -13,7 +13,7 @@ render();
 
 if (module.hot) {
     module.hot.accept(
-        './components/Root',
+        "./containers/Root",
         () => { render(); });
 }
 
