@@ -1,6 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import Root from "./containers/Root";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "./style.css";
 
 function render() {
     ReactDOM.render(

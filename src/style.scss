@@ -1,0 +1,9 @@
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/mixins";
+
+#root {
+  @include make-container-max-widths();
+  margin-left: auto;
+  margin-right: auto;
+}

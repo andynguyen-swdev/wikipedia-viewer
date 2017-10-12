@@ -1,0 +1,53 @@
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/mixins";
+
+.article-view {
+  text-align: left;
+  display: block;
+  padding: 20px;
+  text-decoration: none;
+  color: map-get($theme-colors,"dark");
+  border: 1px solid #cccccc;
+  transition: box-shadow 0.2s ease-in-out;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 5px;
+    background-color: map-get($theme-colors,"primary");;
+    content: "";
+    z-index: 20;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  &:hover {
+    text-decoration: none;
+    color: map-get($theme-colors,"dark");
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+.article-view__title {
+  text-align: inherit;
+  margin-top: 0;
+  margin-bottom: 18px;
+}
+
+.article-view__snippet {
+  text-align: inherit;
+  margin-top: 0;
+  margin-bottom: 3px;
+}
+
+span.searchmatch {
+  font-weight: bold;
+  font-style: italic;
+}
