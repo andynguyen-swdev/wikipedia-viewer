@@ -24,7 +24,7 @@ class ArticleSearchForm extends React.Component<ArticleSearchFormProps, {}> {
     }
 
     render() {
-        const appState = this.props.appState!
+        const appState = this.props.appState!;
 
         return (
             <form onSubmit={this.onSubmit} className="article-search-form">

@@ -33,5 +33,5 @@
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.1"
   },
-  "homepage": "https://duyanh2912.github.io/wikipedia-viewer"
+  "homepage": "."
 }

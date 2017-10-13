@@ -7,13 +7,13 @@ import ArticleList from "./ArticleList";
 import "./styles/App.css";
 import {AppState} from "../reducers/mobx";
 
-const App: React.SFC<{appState?: AppState}> = ({appState}) => {
+const App: React.SFC<{ appState?: AppState }> = ({appState}) => {
     let className = "app";
     if (appState!.searchQuery || appState!.isFocusingOnInput) className += " app--focus";
 
     return (
         <div className={className}>
-            <DevTools/>
+            {(process.env.NODE_ENV === "development") ? <DevTools/> : ""}
             <RandomArticleLink/>
             <ArticleSearchForm/>
             <ArticleList/>
