@@ -4,12 +4,14 @@
 @import "vars.scss";
 
 .article-view {
+  overflow: hidden;
   text-align: left;
   display: block;
   padding: 20px;
   text-decoration: none;
   color: map-get($theme-colors,"dark");
   border: 1px solid #cccccc;
+  border-radius: 4px;
   transition: box-shadow 0.2s ease-in-out;
   position: relative;
 

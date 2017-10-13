@@ -20,11 +20,14 @@
     display: block;
     width: 100%;
     text-align: center;
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid #ccc;
+    -webkit-appearance: none;
 
     &:focus {
-      outline: none;
-      border-color: $primary-color;
-      border-style: solid;
+      border: 1px solid $primary-color;
+      box-shadow: 0 0 0 2px $primary-color;
     }
   }
 }
