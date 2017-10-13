@@ -1,0 +1,14 @@
+.app {
+  position: absolute;
+  top: 40vh;
+  transform: translateY(-50%);
+  left: 15px;
+  right: 15px;
+  //transition: top 0.5s ease-in-out;
+}
+
+.app--focus {
+  top: 10vh;
+  transform: none;
+  margin-bottom: 10vh;
+}

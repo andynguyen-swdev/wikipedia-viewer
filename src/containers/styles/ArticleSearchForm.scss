@@ -1,0 +1,30 @@
+@import "bootstrap/scss/_functions";
+@import "bootstrap/scss/_variables";
+@import "bootstrap/scss/mixins";
+@import "vars.scss";
+
+.article-search-form {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__title {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 15px auto;
+    flex: 0 0 100%;
+    cursor: pointer;
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    text-align: center;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      border-style: solid;
+    }
+  }
+}

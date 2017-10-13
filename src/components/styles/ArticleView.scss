@@ -1,6 +1,7 @@
 @import "bootstrap/scss/_functions";
 @import "bootstrap/scss/_variables";
 @import "bootstrap/scss/mixins";
+@import "vars.scss";
 
 .article-view {
   text-align: left;
@@ -18,17 +19,18 @@
     bottom: 0;
     left: 0;
     width: 5px;
-    background-color: map-get($theme-colors,"primary");;
+    background-color: $primary-color;
     content: "";
     z-index: 20;
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
   }
 
-  &:hover {
+  &:hover,&:focus {
     text-decoration: none;
     color: map-get($theme-colors,"dark");
     box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
+    outline: none;
     &::before {
       opacity: 1;
     }

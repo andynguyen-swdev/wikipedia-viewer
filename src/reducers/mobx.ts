@@ -13,10 +13,16 @@ export class AppState {
     @observable isFetching = false;
     @observable error: string | null = null;
     @observable response: Article[] = [];
+    @observable isFocusingOnInput = false;
 
     @action
     searchArticles = async (query: string) => {
-        if (!query.trim()) return;
+        if (!query.trim()) {
+            this.searchQuery = "";
+            this.response = [];
+            this.setIsFetching(false);
+            return;
+        }
         try {
             this.startRequest(query);
             const response = await fetchArticle(query);
@@ -29,6 +35,11 @@ export class AppState {
     @action
     setIsFetching(_: boolean) {
         this.isFetching = _;
+    }
+
+    @action
+    setIsFocusingOnInput(_: boolean) {
+        this.isFocusingOnInput = _;
     }
 
     @action

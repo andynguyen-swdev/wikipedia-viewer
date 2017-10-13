@@ -1,3 +1,14 @@
+@import "vars.scss";
+
 .Random-Article-Link {
   text-align: center;
+  display: block;
+  font-size: 3rem;
+  line-height: 3rem;
+  font-weight: bold;
+  color: $primary-color;
+
+  &:hover,:focus {
+    color: $primary-color-darker;
+  }
 }

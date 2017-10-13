@@ -4,6 +4,7 @@ import {action, observable} from "mobx";
 import {inject, observer} from "mobx-react";
 import {AppState} from "../reducers/mobx";
 import * as _ from "lodash";
+import "./styles/ArticleSearchForm.css";
 
 interface ArticleSearchFormProps {
     appState?: AppState;
@@ -23,33 +24,45 @@ class ArticleSearchForm extends React.Component<ArticleSearchFormProps, {}> {
     }
 
     render() {
+        const appState = this.props.appState!
+
         return (
-            <form onSubmit={this.onSubmit}>
-                <p>Or search for an article:</p>
+            <form onSubmit={this.onSubmit} className="article-search-form">
+                <label
+                    className="article-search-form__title"
+                    htmlFor="article-search-form__input"
+                >
+                    Or search for an article
+                </label>
                 <input
                     type="text"
                     value={this.inputText}
                     onChange={this.onInputChange}
+                    className="article-search-form__input"
+                    id="article-search-form__input"
+                    onFocus={e => appState.setIsFocusingOnInput(true)}
+                    onBlur={e => appState.setIsFocusingOnInput(false)}
                 />
             </form>
         );
     }
 
-    handleInput = () => {
+    handleInputChange = () => {
         if (this.inputText.trim()) {
-            this.props.appState!.setIsFetching(true);
             this.throttledSearch();
+        } else {
+            this.props.appState!.searchArticles("");
         }
     }
 
     onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        this.handleInput();
+        this.handleInputChange();
     }
 
     @action onInputChange = (e: any) => {
         this.inputText = e.currentTarget.value;
-        this.handleInput();
+        this.handleInputChange();
     }
 }
 
