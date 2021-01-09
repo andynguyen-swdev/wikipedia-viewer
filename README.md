@@ -1,3 +1,10 @@
+# Wikipedia Viewer
+
+[Access the webpage here.](https://andynguyen-swdev.github.io/wikipedia-viewer/)
+
+This project allows you to search for articles on wikipedia based on the search phrase you entered. In case you don't know what you're looking for, you can always click the random page link to explore something new!
+
+---
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
